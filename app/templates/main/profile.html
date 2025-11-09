@@ -44,14 +44,22 @@
                         <h5 class="card-title">Recent Activity</h5>
                         <div class="activity-timeline">
                             <!-- Add recent messages or activity here -->
-                            {% for message in user.messages_sent.order_by(Message.timestamp.desc()).limit(5).all() %}
-                            <div class="activity-item">
-                                <div class="activity-content">
-                                    <small class="text-muted">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
-                                    <p>Sent a message to {{ message.recipient.username }}</p>
+                            {% if recent_messages %}
+                                {% for message in recent_messages %}
+                                <div class="activity-item">
+                                    <div class="activity-content">
+                                        <small class="text-muted">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                                        <p>Sent a message to {{ message.recipient.username }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% else %}
+                                <div class="activity-item">
+                                    <div class="activity-content">
+                                        <p>No messages sent yet</p>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

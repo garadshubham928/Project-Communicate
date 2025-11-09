@@ -22,7 +22,18 @@ def index():
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('main/profile.html', user=user, title=f"{username}'s Profile")
+    from app.models.models import Message
+    
+    # Get recent messages
+    recent_messages = Message.query.filter_by(sender_id=user.id)\
+        .order_by(Message.timestamp.desc())\
+        .limit(5)\
+        .all()
+    
+    return render_template('main/profile.html', 
+                         user=user, 
+                         recent_messages=recent_messages,
+                         title=f"{username}'s Profile")
 
 @main_bp.route('/edit_profile', methods=['POST'])
 @login_required
