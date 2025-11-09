@@ -1,18 +1,7 @@
 from app import create_app
 from config import Config
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 # Flask app initialize 
->>>>>>> Stashed changes
-=======
-# Flask app initialize 
->>>>>>> Stashed changes
-=======
-# Flask app initialize 
->>>>>>> Stashed changes
 app = create_app()
 
 if __name__ == '__main__':
