@@ -94,25 +94,6 @@ Access the application at:
 
 ---
 
-## 📂 Project Structure
-```
-vsa-messenger/
-│
-├── client/              # React frontend
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
-├── server/              # Node.js backend
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── app.js
-│   └── package.json
-│
-└── README.md
-```
-
 ---
 
 ## 🔒 Security Notes
