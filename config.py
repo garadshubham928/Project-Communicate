@@ -1,3 +1,4 @@
+# App cnfiguration file
 import os
 from datetime import timedelta
 
@@ -23,4 +24,5 @@ class Config:
     
     # Socket IO settings
     SOCKET_IO_PING_TIMEOUT = 60
+
     SOCKET_IO_PING_INTERVAL = 25
