@@ -1,6 +1,8 @@
+# Flask Socket Connectivity
 from flask_socketio import emit
 from app import socketio
-from flask_login import current_user
+fro
+m flask_login import current_user
 
 @socketio.on('connect')
 def handle_connect():
@@ -19,4 +21,5 @@ def handle_message(data):
             'sender_id': current_user.id,
             'recipient_id': data['recipient_id'],
             'content': data['content']
+
         }, broadcast=True)
