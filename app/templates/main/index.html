@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="messenger-container">
+    <div class="chat-list">
+        <div class="chat-list-header">
+            <h4>Chats</h4>
+        </div>
+        <div class="chat-list-content">
+            {% for chat in chats %}
+                {% set other_user = chat.user2 if chat.user1_id == current_user.id else chat.user1 %}
+                <div class="chat-item" data-user-id="{{ other_user.id }}">
+                    <img src="{{ url_for('static', filename='uploads/' + other_user.profile_pic) }}" alt="{{ other_user.username }}" class="chat-avatar">
+                    <div class="chat-info">
+                        <h5>{{ other_user.username }}</h5>
+                        <p class="last-message"></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="chat-window">
+        <div class="chat-header">
+            <h4 id="chat-title">Select a chat to start messaging</h4>
+        </div>
+        <div class="messages-container" id="messages">
+            <!-- Messages will be loaded here -->
+        </div>
+        <div class="chat-input">
+            <form id="message-form" class="d-none">
+                <div class="input-group">
+                    <input type="text" id="message-input" class="form-control" placeholder="Type a message...">
+                    <button type="button" class="btn btn-outline-secondary" id="attach-button">
+                        <i class="bi bi-paperclip"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="user-list">
+        <div class="user-list-header">
+            <h4>Users</h4>
+        </div>
+        <div class="user-list-content">
+            {% for user in users %}
+                <div class="user-item" data-user-id="{{ user.id }}">
+                    <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="{{ user.username }}" class="user-avatar">
+                    <div class="user-info">
+                        <h5>{{ user.username }}</h5>
+                        <p class="user-status" data-user-id="{{ user.id }}">Offline</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const currentUserId = {{ current_user.id }};
+</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,132 @@
+.messenger-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 20px;
+    height: calc(100vh - 100px);
+    padding: 20px;
+}
+
+.chat-list, .chat-window, .user-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-list-header, .chat-header, .user-list-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-list-content, .messages-container, .user-list-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.chat-item, .user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.chat-item:hover, .user-item:hover {
+    background-color: #f8f9fa;
+}
+
+.chat-avatar, .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.chat-info, .user-info {
+    flex: 1;
+}
+
+.chat-info h5, .user-info h5 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.last-message, .user-status {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.messages-container {
+    background: #f8f9fa;
+}
+
+.message {
+    max-width: 70%;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.message.sent {
+    background: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.message.received {
+    background: white;
+    margin-right: auto;
+}
+
+.chat-input {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input form {
+    margin: 0;
+}
+
+/* Auth pages styling */
+.login-container, .register-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+/* Message attachment styles */
+.message-attachment {
+    display: block;
+    margin-top: 5px;
+}
+
+.message-attachment img {
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+/* Online status indicator */
+.user-status.online {
+    color: #28a745;
+}
+
+.user-status.offline {
+    color: #6c757d;
+}
