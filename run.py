@@ -2,6 +2,10 @@ from app import create_app
 from config import Config
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+# Flask app initialize 
+>>>>>>> Stashed changes
 =======
 # Flask app initialize 
 >>>>>>> Stashed changes
