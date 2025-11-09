@@ -1,0 +1,32 @@
+# ---------------------------
+# VSA Messenger - Flask Backend
+# Python Version: 3.10
+# ---------------------------
+
+# Core Web Framework
+Flask==2.3.3
+Flask-Cors==4.0.0
+Flask-SocketIO==5.3.6
+
+# Database (MongoDB)
+pymongo==4.8.0
+Flask-PyMongo==2.3.0
+
+# Authentication & Security
+Flask-JWT-Extended==4.6.0
+bcrypt==4.1.2
+python-dotenv==1.0.1
+
+# Utilities
+requests==2.32.3
+eventlet==0.36.1   # for async socket.io handling
+gunicorn==22.0.0   # for production deployment
+itsdangerous==2.2.0
+
+# Validation & Serialization
+marshmallow==3.22.0
+email-validator==2.2.0
+
+# Development & Debugging
+Flask-RESTful==0.3.10
+Werkzeug==3.0.3
