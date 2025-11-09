@@ -1,141 +1,92 @@
-# 💬 VSA Messenger
+# VSA Messenger
 
-**VSA Messenger** is a real-time messaging application inspired by WhatsApp, designed for reliable and secure one-to-one communication.  
-> _This version excludes the “Status/Story” feature by design._
+A real-time messaging application built with Flask and WebSocket, similar to WhatsApp but without the status feature.
 
----
+## Features
 
-## 🧑‍💻 Project Information
+- Real-time messaging using WebSocket
+- User authentication (login/register)
+- Profile management
+- File sharing
+- Real-time message delivery status
+- Clean and responsive UI
 
-| Key Item | Details |
-|-----------|----------|
-| **Project Name** | VSA Messenger |
-| **Developers** | Vijay Shinde, Shubham Garad, Avinash Shinde |
-| **Version** | 1.0.0 |
-| **License** | MIT |
-| **Status** | Active Development |
+## Prerequisites
 
----
+- Python 3.8 or higher
+- Virtual environment (recommended)
 
-## 📘 Overview
+## Installation
 
-VSA Messenger replicates essential chat functionalities of WhatsApp, focusing on **real-time communication**, **modern UI**, and **data integrity**.  
-The system supports private messaging with delivery indicators, authentication, and responsive web design.
+1. Clone the repository or download the source code
 
----
-
-## ✨ Core Features
-
-- 🔐 **User Authentication** (Sign-Up / Login using JWT)  
-- 💬 **Real-Time Messaging** (Socket.io based)  
-- 📜 **Chat List & Message History**  
-- 👀 **Read Receipts and Delivery Indicators**  
-- 🟢 **Online / Offline User Status**  
-- 👤 **User Profile Management**  
-- 💻 **Responsive Web Interface**  
-- 🚫 **No Status Feature** (intentionally omitted)
-
----
-
-## 🧱 Technology Stack
-
-| Layer | Technology |
-|-------|-------------|
-| **Frontend** | React.js, HTML5, CSS3, JavaScript |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB (Mongoose ODM) |
-| **Real-Time Engine** | Socket.io |
-| **Authentication** | JWT (JSON Web Tokens) |
-| **Styling** | TailwindCSS / Styled Components |
-| **Hosting (Optional)** | Vercel / Render / Localhost |
-
----
-
-## ⚙️ Installation Guide
-
-### 1️⃣ Clone Repository
+2. Create and activate a virtual environment:
 ```bash
-git clone https://github.com/<your-username>/vsa-messenger.git
-cd vsa-messenger
+python -m venv .venv
+.venv\Scripts\activate  # On Windows
 ```
 
-### 2️⃣ Install Dependencies
+3. Install required dependencies:
 ```bash
-# Backend
-cd server
-npm install
-
-# Frontend
-cd ../client
-npm install
+pip install -r requirements.txt
 ```
 
-### 3️⃣ Environment Configuration
-Create a `.env` file inside the `server` directory:
-```env
-PORT=5000
-MONGO_URI=<your_mongodb_connection_string>
-JWT_SECRET=<your_jwt_secret_key>
-```
-
-### 4️⃣ Run Application
+4. Initialize the database:
 ```bash
-# Start backend
-cd server
-npm start
+python run.py
+```
+The database will be automatically created on first run.
 
-# Start frontend
-cd ../client
-npm start
+## Running the Application
+
+1. Make sure you're in the project directory and virtual environment is activated
+
+2. Run the application:
+```bash
+python run.py
 ```
 
-Access the application at:  
-➡️ **http://localhost:3000**
+3. Access the application:
+- Local access: `http://localhost:8080`
+- Network access: `http://your-ip-address:8080`
 
----
+## Network Access Configuration
 
----
+To access the application over your local network:
 
-## 🔒 Security Notes
+1. The application runs on `0.0.0.0` (all network interfaces) by default
+2. Make sure port 8080 is allowed through your firewall
+3. Connect devices to the same network
+4. Access using your computer's IP address: `http://your-ip-address:8080`
 
-- User sessions secured using **JWT tokens**.  
-- Passwords stored in **hashed form** using bcrypt.  
-- No external user data shared with third-party APIs.  
-- End-to-End Encryption not yet implemented (planned).
+## Project Structure
 
----
+```
+vsa_messenger/
+├── app/
+│   ├── forms/          # Form definitions
+│   ├── models/         # Database models
+│   ├── routes/         # Route handlers
+│   ├── static/         # Static files (CSS, JS)
+│   ├── templates/      # HTML templates
+│   └── socket.py       # WebSocket handlers
+├── instance/           # Database and instance files
+├── config.py          # Application configuration
+├── db.py              # Database initialization
+├── requirements.txt   # Project dependencies
+└── run.py            # Application entry point
+```
 
-## 🚧 Roadmap
+## Security Notes
 
-| Feature | Status |
-|----------|---------|
-| Group Chats | ⏳ In Progress |
-| Media Sharing | Planned |
-| Message Encryption | Planned |
-| Push Notifications | Planned |
-| Dark Mode | Planned |
+- Default configuration uses SQLite database
+- Debug mode is enabled by default (disable in production)
+- Make sure to change the secret key in config.py for production use
 
----
+## Contributing
 
-## 🧾 License
+Feel free to fork this project and submit pull requests for any improvements.
 
-This project is licensed under the **MIT License**.  
-You are free to use, modify, and distribute it for learning or commercial purposes.
+## License
 
----
-
-## 🙌 Acknowledgements
-
-Inspired by **WhatsApp Web Interface**.  
-Developed as part of a learning initiative to understand **real-time communication systems** and **scalable backend design**.
-
----
-
-## 📞 Contact
-
-**Team VSA**  
-Developers: Vijay Shinde • Shubham Garad • Avinash Shinde  
-📧 _team.vsa.messenger@gmail.com_  
-🌐 [GitHub Repository](https://github.com/<your-username>/vsa-messenger)
-
----
+This project is open source and available under the MIT License.
