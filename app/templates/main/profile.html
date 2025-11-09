@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-cover"></div>
+        <div class="profile-avatar-container">
+            <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="{{ user.username }}" class="profile-avatar">
+            {% if user == current_user %}
+            <form action="{{ url_for('main.upload_profile_pic') }}" method="post" enctype="multipart/form-data" id="avatar-form">
+                <label for="profile_pic" class="btn btn-sm btn-primary mt-2">
+                    Change Photo
+                    <input type="file" id="profile_pic" name="profile_pic" class="d-none" accept="image/*">
+                </label>
+            </form>
+            {% endif %}
+        </div>
+        <div class="profile-info">
+            <h1 class="profile-username">{{ user.username }}</h1>
+            <p class="profile-email text-muted">{{ user.email }}</p>
+            {% if user == current_user %}
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="profile-content mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">About</h5>
+                        <p class="card-text">{{ user.about or "No information provided." }}</p>
+                        <h6 class="mt-3">Last seen</h6>
+                        <p class="text-muted">{{ user.last_seen.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Recent Activity</h5>
+                        <div class="activity-timeline">
+                            <!-- Add recent messages or activity here -->
+                            {% for message in user.messages_sent.order_by(Message.timestamp.desc()).limit(5).all() %}
+                            <div class="activity-item">
+                                <div class="activity-content">
+                                    <small class="text-muted">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                                    <p>Sent a message to {{ message.recipient.username }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user == current_user %}
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ url_for('main.edit_profile') }}" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="about" class="form-label">About</label>
+                        <textarea class="form-control" id="about" name="about" rows="3">{{ user.about }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .profile-header {
+        position: relative;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .profile-cover {
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .profile-avatar-container {
+        position: absolute;
+        left: 50px;
+        bottom: 20px;
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .profile-info {
+        padding: 20px 20px 20px 230px;
+    }
+
+    .profile-username {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .profile-email {
+        margin: 5px 0;
+    }
+
+    .activity-timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .activity-item {
+        position: relative;
+        padding-bottom: 20px;
+    }
+
+    .activity-item::before {
+        content: '';
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: #e9ecef;
+    }
+
+    .activity-item::after {
+        content: '';
+        position: absolute;
+        left: -34px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #007bff;
+    }
+
+    .activity-content {
+        background: #f8f9fa;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Auto-submit profile picture when file is selected
+    document.getElementById('profile_pic')?.addEventListener('change', function() {
+        document.getElementById('avatar-form').submit();
+    });
+</script>
+{% endblock %}

@@ -2,6 +2,10 @@ import os
 from datetime import timedelta
 
 class Config:
+    # Server Settings
+    HOST = os.environ.get('HOST') or '0.0.0.0'
+    PORT = int(os.environ.get('PORT') or 5000)
+    
     # Security
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'your-secret-key-here'
     

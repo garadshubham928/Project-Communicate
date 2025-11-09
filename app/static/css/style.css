@@ -1,13 +1,31 @@
+:root {
+    --primary-color: #0084ff;
+    --secondary-color: #f0f2f5;
+    --accent-color: #00a67e;
+    --text-primary: #1c1e21;
+    --text-secondary: #65676b;
+    --online-color: #31a24c;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+/* General Layout */
 .messenger-container {
     display: grid;
     grid-template-columns: 300px 1fr 300px;
     gap: 20px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 76px);
     padding: 20px;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
+/* Chat Components */
 .chat-list, .chat-window, .user-list {
-    background: #fff;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
